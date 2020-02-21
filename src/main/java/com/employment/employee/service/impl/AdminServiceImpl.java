@@ -16,8 +16,8 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	public boolean validateAdmin(String email, String password) {
-		Admin returnedRow = adminRepository.findByEmail(email); 
-		return returnedRow != null ? 
+		Admin returnedRow = adminRepository.findByEmail(email);
+		return returnedRow != null ?
 				new BCryptPasswordEncoder().matches(password, returnedRow.getPassword()) : false;
 	}
 

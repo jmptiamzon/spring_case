@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.employment.employee.binding.EmployeeRequest;
 import com.employment.employee.model.Employee;
 import com.employment.employee.repository.EmployeeRepository;
 import com.employment.employee.services.EmployeeService;
@@ -21,21 +19,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public boolean addEmployees(EmployeeRequest employeeRequest) {
-		// TODO Auto-generated method stub
+	public boolean addEmployees(Employee employee) {
+		// boolean status = false;
+		employeeRepository.save(employee);
 		return false;
 	}
 
 	@Override
-	public boolean updateEmployees(EmployeeRequest employeeRequest) {
-		// TODO Auto-generated method stub
+	public boolean updateEmployees(Employee employee) {
+		employeeRepository.save(employee);
 		return false;
 	}
 
 	@Override
 	public boolean removeEmployee(int empId) {
-		// TODO Auto-generated method stub
-		return false;
+		employeeRepository.deleteById(empId);
+		return true;
 	}
 
 }

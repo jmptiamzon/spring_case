@@ -1,13 +1,14 @@
 package com.employment.employee.model;
 
 import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,10 +18,10 @@ import lombok.Setter;
 
 @Entity
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tblemployee")
-public class Employee {
+@NoArgsConstructor
+@Table(name = "tblcompensation")
+public class Compensation {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,33 +29,26 @@ public class Employee {
 	@Setter
 	private int id;
 	
-	@NotNull
-	@NotBlank
 	@Getter
 	@Setter
-	private String firstname;
+	private int emp_id;
 	
 	@Getter
 	@Setter
-	private String middlename;
-	
-	@NotNull
-	@NotBlank
-	@Getter
-	@Setter
-	private String lastname;
+	private int comp_type_id;
 	
 	@NotNull
 	@Getter
 	@Setter
-	private Date birthdate;
+	private double amount;
 	
 	@NotNull
 	@NotBlank
 	@Getter
 	@Setter
-	private String position;
+	private String description;
 	
-	
-	// Add Timestamp
+	@Getter
+	@Setter
+	private Date date;
 }

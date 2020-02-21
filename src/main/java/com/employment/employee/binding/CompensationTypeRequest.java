@@ -1,8 +1,6 @@
 package com.employment.employee.binding;
-
-import java.util.Date;
-
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,35 +9,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeRequest {
-	
+@NoArgsConstructor
+public class CompensationTypeRequest {
 	@Getter
 	@Setter
 	private int id;
 	
-	@Getter
-	@Setter
+	@NotNull
 	@NotBlank
-	private String firstname;
-	
 	@Getter
 	@Setter
-	private String middlename;
-	
-	@Getter
-	@Setter
-	@NotBlank
-	private String lastname;
-	
-	@Getter
-	@Setter
-	private Date birthdate;
-	
-	@Getter
-	@Setter
-	@NotBlank
-	private String position;
-	
+	private String compensationType;
 }

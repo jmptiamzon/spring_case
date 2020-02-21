@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.employment.employee.binding.EmployeeRequest;
+import com.employment.employee.model.Employee;
 import com.employment.employee.services.EmployeeService;
 
 @CrossOrigin
@@ -22,30 +23,42 @@ public class EmployeeController {
 	
 	@GetMapping(value = "/getEmployees")
 	public ResponseEntity<?> getEmployees() {
-		
-		
-		return null;
+		return ResponseEntity.ok(employeeService.retrieveAllEmployees());
 	}
 	
 	@PostMapping(value = "/addEmployees")
 	public ResponseEntity<?> addEmployees(@Valid @RequestBody EmployeeRequest employeeRequest) {
+		Employee newEmployee = Employee.builder()
+				.firstname(employeeRequest.getFirstname())
+				.middlename(employeeRequest.getMiddlename())
+				.lastname(employeeRequest.getLastname())
+				.birthdate(new java.sql.Date(employeeRequest.getBirthdate().getTime()))
+				.position(employeeRequest.getPosition())
+			.build();
 		
-		return null;
+		employeeService.addEmployees(newEmployee);
+		
+		return ResponseEntity.ok(getEmployees());
 	}
 	
 	@PostMapping(value = "/updateEmployees")
 	public ResponseEntity<?> updateEmployees(@Valid @RequestBody EmployeeRequest employeeRequest) {
-		
-		return null;
+		Employee updateEmployee = Employee.builder()
+				.id(employeeRequest.getId())
+				.firstname(employeeRequest.getFirstname())
+				.middlename(employeeRequest.getMiddlename())
+				.lastname(employeeRequest.getLastname())
+				.birthdate(new java.sql.Date(employeeRequest.getBirthdate().getTime()))
+				.position(employeeRequest.getPosition())
+			.build();
+				
+		employeeService.updateEmployees(updateEmployee);
+		return ResponseEntity.ok(getEmployees());
 	}
 	
-	
-	@GetMapping(value = "/{empId}")
+	@GetMapping(value = "/removeEmployees/{empId}")
 	public ResponseEntity<?> removeEmployee(@PathVariable("empId") int empId) {
-		
-		return null;
+		employeeService.removeEmployee(empId);
+		return ResponseEntity.ok(getEmployees());
 	}
-	
-	
-
 }
